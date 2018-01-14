@@ -18,6 +18,8 @@ var imgPrefix = [config.url_Prefix, '/', config.image.folder].join('').replace(/
 var jsPrefix = [config.url_Prefix, '/', config.js.folder].join('').replace(/\/$/, '');
 // 样式表文件夹路径
 var cssPrefix = [config.url_Prefix, '/', config.css.folder].join('').replace(/\/$/, '');
+// 资源文件夹路径
+var assetPrefix=[config.url_Prefix, '/', config.asset.folder].join('').replace(/\/$/, '');
 
 /** 
  * 将markdown里的tag 数组解析成配置对象<br/>
@@ -39,7 +41,7 @@ var parseAttrs = function(argArray){
     attrs[parseAttr[0]] = parseAttr[1];
   }
   return attrs;
-}
+};
 
 /** 
  * 如标签: {% qnimg test/demo.png title:图片标题 alt:图片说明 'class:class1 class2' 'extend：?imageView2/2/w/800/h/2000' %}<br/>
@@ -77,6 +79,14 @@ var qnCssTag = function(args,content){
   return htmlTag('link', cssAttr);
 };
 
+var qnAssetTag=function(args,content) {
+    var assetName=args[0];
+    var assetAttr=parseAttrs(args);
+    var assetTitle=assetAttr.title;
+    assetAttr.href=[assetPrefix,'/', assetName].join('');
+    return htmlTag('a',assetAttr,assetTitle);
+};
+
 var qnJsHelper = function(path){
   return ['<script type="text/javascript" src="',jsPrefix,'/',path,'"></script>'].join('');
 };
@@ -88,6 +98,7 @@ var qnUrlHelper = function(path){
 hexo.extend.tag.register('qnimg',qnImgTag);
 hexo.extend.tag.register('qnjs',qnJsTag);
 hexo.extend.tag.register('qncss',qnCssTag);
+hexo.extend.tag.register('qnAsset',qnAssetTag);
 hexo.extend.helper.register('qnjs', qnJsHelper);
 hexo.extend.helper.register('qnurl', qnUrlHelper);
 

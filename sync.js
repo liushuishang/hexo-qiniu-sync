@@ -7,7 +7,7 @@ var config = require('./config');
 var chokidar = require('chokidar');
 var getEtag = require('./qetag');
 var minimatch = require('minimatch');
-var processor = require('process')
+var processor = require('process');
 
 var publicDir = hexo.public_dir;
 var sourceDir = hexo.source_dir;

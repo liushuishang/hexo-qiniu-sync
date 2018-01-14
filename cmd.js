@@ -22,6 +22,7 @@ mkcdndir(local_dir);
 mkcdndir(path.join(local_dir, config.image.folder));
 mkcdndir(path.join(local_dir, config.js.folder));
 mkcdndir(path.join(local_dir, config.css.folder));
+mkcdndir(path.join(local_dir, config.asset.folder));
 
 commands.sync = function(){
     if (config.access_key && config.secret_key && config.bucket) {

@@ -17,5 +17,8 @@ module.exports = {
     },
     css: {
         folder: 'css'
+    },
+    asset:{
+        folder: 'asset'
     }
 };
